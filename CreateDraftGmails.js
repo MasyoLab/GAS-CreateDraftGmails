@@ -25,11 +25,6 @@ function updateDraft()
             item.deleteDraft();
             return;
         }
-        Logger.log("=============================================");
-        Logger.log(message.getBody());
-        Logger.log(message.getSubject());
-        Logger.log(message.getId());
-        Logger.log("=============================================");
     });
 
     // タグ付きしか残ってないので、ベースとなるメールを取得
@@ -40,7 +35,7 @@ function updateDraft()
         {
             var message = item.getMessage();
             var recipient = message.getTo();
-            var subject = '';
+            var subject = message.getSubject().replace(TAG_DRAFT_NAME, '');
             var body = message.getBody();
             var htmlBody = body.replace(/\n/g, '<br>');
             var options = { htmlBody: htmlBody };
